@@ -83,8 +83,9 @@ class OrderServiceTest {
         Member member = createMember();
         Book book = createBook("시골 JPA", 10000, 10);
 
-
-        assertThatThrownBy(() -> orderService.order(member.getId(), book.getId(), 13))
+    //  .isInstanceOf(NotEnoughStockException.class) 예상되는 예외 클래스
+        // 책의 재고는 10개 주문은 11개를 시켰으므로 재고 수량 부족 예외 발생 따라서 테스트 통과
+        assertThatThrownBy(() -> orderService.order(member.getId(), book.getId(), 11))
                 .isInstanceOf(NotEnoughStockException.class)
         ;
       //  fail("재고 수량 부족 예외가 발생해야함. 테스트 실패"); 여기선 필요없음.
