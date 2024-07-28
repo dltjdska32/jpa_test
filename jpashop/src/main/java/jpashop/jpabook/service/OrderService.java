@@ -39,7 +39,7 @@ public class OrderService {
         //배송정보 생성
         Delivery delivery = new Delivery();
         //멤버 객체에있는 주소를 사용
-        delivery.setAddress(member.getAddres());
+        delivery.setAddress(member.getAddress());
 
         //주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);

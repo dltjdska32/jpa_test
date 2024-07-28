@@ -18,7 +18,8 @@ public class Member {
 
     private String name;
 
-    private Address addres;
+    @Embedded
+    private Address address;
 
     //오더 테이블과 연관관계설정
     @OneToMany(mappedBy = "member")

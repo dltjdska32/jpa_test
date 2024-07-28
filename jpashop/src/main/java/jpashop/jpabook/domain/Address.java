@@ -3,6 +3,7 @@ package jpashop.jpabook.domain;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
+import lombok.Setter;
 
 
 // 값 타입
