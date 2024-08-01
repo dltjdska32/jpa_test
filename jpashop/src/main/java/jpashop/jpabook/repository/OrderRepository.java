@@ -27,52 +27,52 @@ public class OrderRepository {
     }
 
     //동적쿼리 1. 파라미터를 문자열에 각각 추가
-//    public List<Order> findAll(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
 
 
-//        String jpql = "select o from Order o join o.member m";
-//        boolean isFirstCondition = true;
-//
-//        //주문 상태 검색
-//        if(orderSearch.getOrderStatus() != null) {
-//            //처음추가할때 where을 넣어줌
-//            if(isFirstCondition) {
-//                jpql += " where ";
-//                isFirstCondition = false;
-//            }
-//            // 두번째 추가시 and를 넣어줌
-//            else {
-//                jpql += " and ";
-//            }
-//            jpql += "o.status = :status";
-//        }
-//
-//        if(StringUtils.hasText(orderSearch.getMemberName())) {
-//            if(isFirstCondition) {
-//                jpql += " where ";
-//                isFirstCondition = false;
-//            } else {
-//                jpql += " and ";
-//            }
-//
-//            jpql += "m.name like :name";
-//        }
-//
-//        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
-//                .setMaxResults(1000);
-//
-//        if (orderSearch.getOrderStatus() != null) {
-//            query.setParameter("status", orderSearch.getOrderStatus());
-//        }
-//
-//        if (StringUtils.hasText(orderSearch.getMemberName())) {
-//            query.setParameter("name", orderSearch.getMemberName());
-//        }
-//
-//        return query.getResultList();
-//
-//
-//    }
+        String jpql = "select o from Order o join o.member m";
+        boolean isFirstCondition = true;
+
+        //주문 상태 검색
+        if(orderSearch.getOrderStatus() != null) {
+            //처음추가할때 where을 넣어줌
+            if(isFirstCondition) {
+                jpql += " where ";
+                isFirstCondition = false;
+            }
+            // 두번째 추가시 and를 넣어줌
+            else {
+                jpql += " and ";
+            }
+            jpql += "o.status = :status";
+        }
+
+        if(StringUtils.hasText(orderSearch.getMemberName())) {
+            if(isFirstCondition) {
+                jpql += " where ";
+                isFirstCondition = false;
+            } else {
+                jpql += " and ";
+            }
+
+            jpql += "m.name like :name";
+        }
+
+        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
+                .setMaxResults(1000);
+
+        if (orderSearch.getOrderStatus() != null) {
+            query.setParameter("status", orderSearch.getOrderStatus());
+        }
+
+        if (StringUtils.hasText(orderSearch.getMemberName())) {
+            query.setParameter("name", orderSearch.getMemberName());
+        }
+
+        return query.getResultList();
+
+
+    }
 
 
     //동적 쿼리 2. jpa criteria 사용 -> 실무에서 사용하기 어려움
